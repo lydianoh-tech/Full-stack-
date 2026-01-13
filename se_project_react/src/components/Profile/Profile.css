@@ -1,0 +1,29 @@
+.profile {
+  display: flex;
+  gap: 117px;
+
+  height: 976px;
+
+  background: #f3f3f3;
+}
+
+.profile__main-content {
+  width: 1015px;
+  display: flex;
+  flex-direction: column;
+  height: 676px;
+  angle: 0deg;
+  opacity: 1;
+  top: 176px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .profile__sidebar {
+    width: 100%;
+  }
+}

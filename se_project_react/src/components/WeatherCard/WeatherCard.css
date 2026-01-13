@@ -1,0 +1,56 @@
+.weather-cards {
+  position: relative;
+  display: flex;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.weather__card-temp {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk", sans-serif;
+  color: #fff;
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  margin: 0;
+  line-height: 40px;
+}
+
+.weather-card__image {
+  object-fit: cover;
+  object-position: right top;
+}
+
+.weather-card__text {
+  margin: 40px 0 34px;
+  font-size: 20px;
+  line-height: 1;
+  color: #000;
+  font-weight: 700;
+  font-style: bold;
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+@media screen and (max-width: 480px) {
+  .weather-cards {
+  }
+  .weather__card-temp {
+    font-size: 24px;
+    line-height: 28px;
+    top: 16px;
+    left: 12px;
+  }
+  .weather-card__text {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 32px 0 24px;
+  }
+
+  .weather-card__image {
+    object-fit: cover;
+    object-position: right top;
+    width: 100%;
+    visibility: hidden;
+  }
+}

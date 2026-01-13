@@ -1,0 +1,44 @@
+.main {
+  width: 100%;
+  width: 1440;
+  height: 976;
+  top: 260px;
+  left: 240px;
+}
+
+.cards__text {
+  font-size: 20px;
+  line-height: 100%;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.cards__list {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 323px);
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+@media screen and (max-width: 480px) {
+  .main {
+    width: 343;
+    height: 524;
+    gap: 15px;
+
+    opacity: 1;
+  }
+  .cards__list {
+    width: 343;
+    height: 524;
+    gap: 15px;
+    angle: 0 deg;
+    opacity: 1;
+  }
+  .cards__text {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}

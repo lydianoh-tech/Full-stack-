@@ -1,0 +1,22 @@
+.modal__label_account_info {
+  border: none;
+  border-bottom: 1px solid #cfcfcf;
+  margin-top: 8px;
+}
+
+.modal__submit:disabled {
+  margin: 0;
+}
+
+.modal__redirect_signup {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  border: none;
+  background: transparent;
+  color: #00000080;
+  position: relative;
+  top: 27px;
+  left: 110px;
+  margin: 0;
+  max-width: 124px;
+}

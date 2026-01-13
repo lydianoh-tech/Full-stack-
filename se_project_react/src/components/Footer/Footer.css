@@ -1,0 +1,66 @@
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0 ;
+
+    margin-top: auto;
+    font-family: 'Cabinet Grotesk', sans-serif;width: 1358;
+    height: 20;    
+    angle: 0 deg;
+    opacity: 1;
+    top: 778px;
+    left: 40px;
+
+}
+
+
+
+.footer__text{
+    height: 20;
+    angle: 0 deg;
+    opacity: 1;
+    top: 778px;
+    left: 40px;font-family: Cabinet Grotesk;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 20px;
+    letter-spacing: 0%;
+    vertical-align: bottom;
+
+
+
+}
+.footer__date{
+    width: 38;
+    height: 20;
+    angle: 0 deg;
+    opacity: 1;
+    top: 778px;
+    left: 1360px;
+
+    font-family: Cabinet Grotesk;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 20px;
+    text-align: right;
+    vertical-align: bottom;
+    color: #000;
+}
+
+@media screen and (max-width: 480px) {
+.footer {
+    width: 343;
+height: 20;
+top: 847px;
+left: 16px;
+gap: 101px;
+angle: 0 deg;
+opacity: 1;
+
+  }
+}

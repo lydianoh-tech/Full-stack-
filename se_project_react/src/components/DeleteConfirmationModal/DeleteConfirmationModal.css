@@ -1,0 +1,55 @@
+.modal__content_type_confirmation {
+  width: 670px;
+  height: 280px;
+
+  opacity: 1;
+  padding: 0;
+}
+.modal__confirmation-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 1;
+
+  border-radius: 8px;
+}
+
+.modal__buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal__delete-affirmation-btn {
+  color: #ff4d00;
+  padding-bottom: 24px;
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.modal__btn_type_cancel {
+  width: 61;
+  height: 24;
+  top: 467px;
+  left: 689px;
+  background: transparent;
+  opacity: 1;
+  color: #000;
+
+  margin-top: 10px;
+  border: none;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+
+  line-height: 24px;
+  letter-spacing: 0%;
+}
