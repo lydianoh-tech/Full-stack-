@@ -25,11 +25,11 @@ WTWR is a React web application that helps users decide what to wear based on cu
 
 ## Tech Stack
 
-- [React]React.js with React Router for navigation(https://react.dev/)
+- [React](https://react.dev/) - React.js with React Router for navigation
 - [Vite](https://vitejs.dev/)
-- [JSON Server](https://github.com/typicode/json-server) for RESTful API simulation
+- [Express Backend](https://github.com/lydianoh-tech/se_project_express) - Node.js/Express API server
 - [OpenWeatherMap API](https://openweathermap.org/api)
-  React hooks (useState, useEffect, useContext)
+- React hooks (useState, useEffect, useContext)
 - CSS Modules
 
 ---

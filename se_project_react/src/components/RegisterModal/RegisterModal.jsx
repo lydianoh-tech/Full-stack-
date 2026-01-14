@@ -1,3 +1,4 @@
+import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 
@@ -6,6 +7,7 @@ export default function RegisterModal({
   isOpen,
   onRegisterModalSubmit,
   activeModal,
+  onLoginClick,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -99,6 +101,22 @@ export default function RegisterModal({
           value={avatar}
         />
       </label>
+      <div className="register-modal__actions">
+        <button
+          type="submit"
+          className="register-modal__submit"
+          disabled={!email || !password || !name}
+        >
+          Sign Up
+        </button>
+        <button
+          type="button"
+          className="register-modal__switch"
+          onClick={onLoginClick}
+        >
+          or Log In
+        </button>
+      </div>
     </ModalWithForm>
   );
 }

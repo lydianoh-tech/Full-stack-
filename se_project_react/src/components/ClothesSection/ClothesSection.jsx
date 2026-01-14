@@ -12,9 +12,9 @@ function ClothesSection({
   onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
-  const userId = currentUser._id;
+  const userId = currentUser?._id;
   const filteredClothingItems = clothingItems.filter(
-    (item) => String(item.owner) === String(userId)
+    (item) => userId && String(item.owner) === String(userId)
   );
   return (
     <div className="clothes__section">

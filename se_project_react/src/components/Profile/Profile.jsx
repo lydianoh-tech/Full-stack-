@@ -5,14 +5,11 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 function Profile({
   clothingItems,
   currentUser,
-  onUpdateUser,
-  handleCardClick,
   onCardClick,
   handleAddClick,
-  handleDeleteClick,
+  onDeleteClick,
   onEditProfile,
   onSignOut,
-  isLoggedIn,
   onCardLike,
 }) {
   return (
@@ -21,7 +18,6 @@ function Profile({
         <SideBar
           className="sidebar__profile-info"
           currentUser={currentUser}
-          onUpdateUser={onUpdateUser}
           onEditProfile={onEditProfile}
           onSignOut={onSignOut}
         />
@@ -32,8 +28,7 @@ function Profile({
           clothingItems={clothingItems}
           onCardClick={onCardClick}
           handleAddClick={handleAddClick}
-          onDeleteClick={handleDeleteClick}
-          isLoggedIn={isLoggedIn}
+          onDeleteClick={onDeleteClick}
           onCardLike={onCardLike}
         />
       </div>

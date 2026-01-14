@@ -1,9 +1,9 @@
-import sunnyDay from '../assets/day/sunny-day.png';
-import cloudyDay from '../assets/day/cloudy-day.png';
-import moonNight from '../assets/night/moon-night.png';
-import cloudyNight from '../assets/night/cloudy-night.png';
-import defaultDay from '../assets/day/default-day.png';
-import defaultNight from '../assets/night/default-night.png';
+import sunnyDay from '../assets/Day/sunny-day.png';
+import cloudyDay from '../assets/Day/cloudy-day.png';
+import moonNight from '../assets/Night/moon-night.png';
+import cloudyNight from '../assets/Night/cloudy-night.png';
+import defaultDay from '../assets/Day/default-day.png';
+import defaultNight from '../assets/Night/default-night.png';
 
 export const weatherOptions = [
   { isDay: true, condition: "clear", url: sunnyDay },

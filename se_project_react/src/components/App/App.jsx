@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { register, login, checkToken } from "../../utils/auth";
+import { getItems, postItem, deleteItem, updateUser } from "../../utils/api";
 import * as api from "../../utils/api";
-import * as auth from "../../utils/auth";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import { useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import "./App.css";
 import Footer from "../Footer/Footer";
@@ -16,7 +15,6 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 import ItemModal from "../ItemModal/ItemModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import { getItems, postItem, deleteItem, updateUser } from "../../utils/api";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -47,10 +45,6 @@ function App() {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
-  /*currentUser = {
-    name: "Terrence Tegegne",
-    avatar: "https://via.placeholder.com/40x40/cccccc/ffffff?text=TT",
-  };*/
 
   // Toggle temperature unit
   const handleToggleSwitchChange = () => {
@@ -67,15 +61,36 @@ function App() {
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
-  const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
+
+  const onAddItem = (inputValues) => {
+    setIsLoading(true);
     const token = localStorage.getItem("jwt");
-    postItem({ name, imageUrl, weather }, token)
-      .then((item) => {
-        safeSetClothingItems((prev) => [item, ...prev]);
+    if (!token) {
+      alert("Please log in to add items.");
+      setIsLoading(false);
+      return;
+    }
+
+    postItem(inputValues, token)
+      .then((addedItem) => {
+        safeSetClothingItems((prev) => [addedItem, ...prev]);
         closeActiveModal();
       })
-      .catch((err) => console.error("Add item error:", err));
+      .catch((error) => {
+        console.error("Error adding item:", error);
+        if (error.includes("400")) {
+          alert("Invalid item data. Please check all fields.");
+        } else if (error.includes("401")) {
+          alert("Session expired. Please log in again.");
+        } else {
+          alert("Failed to add item. Please try again.");
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
+
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
     // Check if this card is not currently liked
@@ -103,13 +118,11 @@ function App() {
   };
 
   const handleCardClick = (card) => {
-    console.log("Opening preview modal for:", card);
     setActiveModal("preview");
     setSelectedCard(card);
   };
 
   const handleDeleteClick = (card) => {
-    console.log("Delete clicked for:", card);
     setActiveModal("delete-confirmation");
     setItemToDelete(card);
   };
@@ -143,45 +156,11 @@ function App() {
     setItemToDelete(null);
   };
 
-  // Add item function
-  const onAddItem = (inputValues) => {
-    setIsLoading(true);
-    console.log("Adding item:", inputValues);
-
-    const token = localStorage.getItem("jwt");
-    if (!token) {
-      alert("Please log in to add items.");
-      setIsLoading(false);
-      return;
-    }
-
-    postItem(inputValues, token)
-      .then((addedItem) => {
-        console.log("Item added successfully:", addedItem);
-        safeSetClothingItems((prev) => [addedItem, ...prev]);
-        closeActiveModal();
-      })
-      .catch((error) => {
-        console.error("Error adding item:", error);
-        if (error.includes("400")) {
-          alert("Invalid item data. Please check all fields.");
-        } else if (error.includes("401")) {
-          alert("Session expired. Please log in again.");
-        } else {
-          alert("Failed to add item. Please try again.");
-        }
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
   // Update user function
   const handleUpdateUser = (userData) => {
     setIsLoading(true);
     updateUser(userData.name, userData.avatar, localStorage.getItem("jwt"))
       .then((updatedUser) => {
-        console.log("User updated successfully:", updatedUser);
         setCurrentUser(updatedUser);
         closeActiveModal();
       })
@@ -201,11 +180,8 @@ function App() {
     setIsLoading(true);
     const itemId = itemToDelete.id || itemToDelete._id;
 
-    console.log("Deleting item with ID:", itemId);
-
     deleteItem(itemId, localStorage.getItem("jwt"))
       .then(() => {
-        console.log("Item deleted successfully");
         safeSetClothingItems((items) =>
           items.filter((item) => (item.id || item._id) !== itemId)
         );
@@ -222,7 +198,6 @@ function App() {
   const handleRegister = (data) => {
     register(data)
       .then((res) => {
-        console.log("Registration successful:", res);
         closeActiveModal();
         setActiveModal("signin");
         setLoginOpen(true);
@@ -257,7 +232,6 @@ function App() {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
           setLoginOpen(false);
-          console.log("Login successful:", res);
         } else {
           alert("Login succeeded but token missing.");
         }
@@ -275,7 +249,6 @@ function App() {
         setCurrentUser(userData);
         setIsLoggedIn(true);
         closeActiveModal();
-        console.log("User data loaded:", userData);
       })
       .catch((err) => {
         console.error("Error loading user data:", err);
@@ -292,7 +265,6 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
-        console.log("Weather data loaded:", filteredData);
       })
       .catch((error) => {
         console.error("Weather fetch error:", error);
@@ -308,7 +280,6 @@ function App() {
     // Load clothing items
     getItems()
       .then((items) => {
-        console.log("Items fetched:", items);
         setClothingItems(items);
       })
       .catch((error) => {
@@ -324,7 +295,6 @@ function App() {
     if (token) {
       checkToken(token)
         .then((userData) => {
-          console.log("Token valid, user data:", userData);
           setCurrentUser(userData);
           setIsLoggedIn(true);
         })
@@ -400,7 +370,6 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             onDeleteClick={handleDeleteClick}
-            onAddItemModalSubmit={handleAddItemModalSubmit}
           />
 
           <DeleteConfirmationModal
@@ -426,6 +395,7 @@ function App() {
             onAuthLogin={handleAuthLogin}
             setActiveModal={setActiveModal}
             onRegisterModalSubmit={handleRegister}
+            onLoginClick={handleSignIn}
           />
           <LoginModal
             isOpen={activeModal === "signin"}
