@@ -6,6 +6,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { login } from "../../utils/auth";
 
 function LoginModal({
+  isOpen,
   activeModal,
   onClose,
   onLogin,
@@ -76,59 +77,64 @@ function LoginModal({
     !formData.email.trim() || !formData.password || isSubmitting;
 
   return (
-    <ModalWithForm
-      title="Log In"
-      buttonText={isSubmitting ? "Logging in..." : "Log In"}
-      onClose={() => {
-        onClose();
-        setError("");
-      }}
-      isOpen={activeModal === "signin"}
-      onSubmit={handleSubmit}
-      isSubmitDisabled={isSubmitDisabled}
-    >
-      <label className="modal__label">
-        Email
-        <input
-          className="modal__label_account_info modal__input_text"
-          name="email"
-          type="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label className="modal__label">
-        Password
-        <input
-          className="modal__label_account_info modal__input_text"
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      {error && <div className="modal__error">{error}</div>}
-      <div className="login-modal__actions">
-        <button
-          type="submit"
-          className="login-modal__submit"
-          disabled={!formData.email || !formData.password}
-        >
-          Log In
-        </button>
-        <button
-          type="button"
-          className="login-modal__switch"
-          onClick={onSignupClick}
-        >
-          or Sign Up
-        </button>
+    <div className={`modal ${isOpen ? "modal__opened" : ""}`}>
+      <div className={`modal ${isOpen ? "modal__opened" : ""}`}>
+        <div className="modal__content modal__content_type_login">
+          <h2 className="modal__title">Log In</h2>
+
+          <button
+            onClick={onClose}
+            type="button"
+            className="modal__close-icon modal__close-icon_type_login"
+          >
+            ✕
+          </button>
+          <form onSubmit={handleSubmit} className="modal__form">
+            <label className="modal__label">
+              Email
+              <input
+                className="modal__label_account_info modal__input_text"
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label className="modal__label">
+              Password
+              <input
+                className="modal__label_account_info modal__input_text"
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            {error && <div className="modal__error">{error}</div>}
+            <div className="login-modal__actions">
+              <button
+                type="submit"
+                className="login-modal__submit"
+                disabled={isSubmitDisabled}
+              >
+                Log In
+              </button>
+              <button
+                type="button"
+                className="login-modal__switch"
+                onClick={onSignupClick}
+              >
+                or Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </ModalWithForm>
+    </div>
   );
 }
 

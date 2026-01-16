@@ -1,13 +1,30 @@
-.register-modal__actions {
+.modal__content_type_registration {
+  width: 496px;
+  padding: 20px;
+  opacity: 1;
+
   display: flex;
   flex-direction: column;
+}
+.modal__close-icon_type_registration {
+  background: transparent;
+  border: none;
+  color: white;
+
+  left: 471px;
+
+  opacity: 1;
+}
+
+.register-modal__actions {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 16px;
   margin-top: 24px;
 }
 
 .register-modal__submit {
-  width: 100%;
   padding: 12px;
   background-color: #000;
   color: #fff;

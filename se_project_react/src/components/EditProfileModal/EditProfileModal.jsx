@@ -38,34 +38,37 @@ const EditProfileModal = ({ isOpen, onUpdateUser, onClose, isLoading }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
-        Name *
-        <input
-          type="text"
-          className="modal__input"
-          id="name"
-          name="name"
-          placeholder="Name"
-          minLength="1"
-          maxLength="30"
-          value={values.name}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label htmlFor="avatar" className="modal__label">
-        Avatar URL *
-        <input
-          type="url"
-          className="modal__input"
-          id="avatar"
-          name="avatar"
-          placeholder="Avatar URL"
-          value={values.avatar}
-          onChange={handleChange}
-          required
-        />
-      </label>
+      {" "}
+      <div className="modal__content modal__content_type_edit-profile">
+        <label htmlFor="name" className="modal__label">
+          Name *
+          <input
+            type="text"
+            className="modal__input"
+            id="name"
+            name="name"
+            placeholder="Name"
+            minLength="1"
+            maxLength="30"
+            value={values.name}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label htmlFor="avatar" className="modal__label">
+          Avatar URL *
+          <input
+            type="url"
+            className="modal__input"
+            id="avatar"
+            name="avatar"
+            placeholder="Avatar URL"
+            value={values.avatar}
+            onChange={handleChange}
+            required
+          />
+        </label>
+      </div>
     </ModalWithForm>
   );
 };

@@ -1,4 +1,24 @@
+.modal__content_type_login {
+  width: 496px;
+  height: 304px;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+}
+.modal__close-icon_type_login {
+  background: transparent;
+  border: none;
+  color: white;
+
+  left: 471px;
+
+  opacity: 1;
+}
 .modal__label_account_info {
+  padding: 20px;
   border: none;
   border-bottom: 1px solid #cfcfcf;
   margin-top: 8px;
@@ -23,15 +43,24 @@
 
 .login-modal__actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 16px;
   margin-top: 24px;
 }
 
 .login-modal__submit {
-  width: 100%;
-  padding: 12px;
+  width: 86px;
+  height: 36px;
+
+  opacity: 1;
+  border-radius: 4px;
+  gap: 8px;
+  padding-top: 8px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+
   background-color: #000;
   color: #fff;
   border: none;
