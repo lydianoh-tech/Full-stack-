@@ -50,7 +50,6 @@ WTWR is a React web application that helps users decide what to wear based on cu
    ```
 
 3. **Add your OpenWeatherMap API key:**
-
    - Edit `src/utils/weatherApi.js` and replace `"YOUR_API_KEY"` with your actual API key.
 
 4. **Start the development server:**
@@ -108,3 +107,5 @@ MIT
 https://lydianoh-tech.github.io/se_project_react/
 youtube link: https://youtu.be/yhwex8fRMw0
 https://github.com/lydianoh-tech/Full-stack-/tree/main/se_project_react
+
+Backend: https://github.com/lydianoh-tech/se_project_express
